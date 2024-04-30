@@ -13,11 +13,11 @@ export function getFetchUrl(settings: IGitSourceSettings): string {
   const encodedName = encodeURIComponent(settings.repositoryName)
   if (settings.sshKey) {
     const user = settings.sshUser.length > 0 ? settings.sshUser : 'git'
-    return `${user}@${serviceUrl.hostname}:${serviceUrl.pathname}/${encodedOwner}/${encodedName}.git`
+    return `${user}@${serviceUrl.hostname}:${encodedOwner}/${encodedName}.git`
   }
 
   // "origin" is SCHEME://HOSTNAME[:PORT]
-  return `${serviceUrl.origin}/${encodedOwner}/${encodedName}`
+  return `${serviceUrl.origin}/${serviceUrl.pathname}/${encodedOwner}/${encodedName}`
 }
 
 export function getServerUrl(url?: string): URL {
